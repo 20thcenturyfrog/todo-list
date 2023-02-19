@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Список задач</title>
+    <link rel="stylesheet" href="todo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2 class="title">Добавьте задачу</h2>
+      <form id="form" class="form">
+        <input
+          type="text"
+          id="task-input"
+          class="task-input"
+          name="task"
+          placeholder="Задача"
+        />
+        <button id="add-task" class="button">Добавить</button>
+      </form>
+      <h2 class="title">Список задач</h2>
+      <div class="container-wrapper">
+        <div class="warning" id="warning">Нет задач</div>
+        <section class="task-container" id="task-container"></section>
+        <button id="clear-container" class="button" disabled>
+          Очистить список задач
+        </button>
+      </div>
+    </div>
+    <script src="todo.js"></script>
+  </body>
+</html>
