@@ -25,9 +25,18 @@ function addTask() {
     checkbox.type = "checkbox";
     checkbox.className = "checkbox";
 
+    const taskContent = document.createElement("input");
+    taskContent.className = "task-content";
+    taskContent.type = "text";
+    taskContent.value = taskInput.value;
+    taskContent.setAttribute("readonly", "readonly");
+
     const taskText = document.createElement("label");
     taskText.className = "task-text";
-    taskText.textContent = taskInput.value;
+
+    const editBtn = document.createElement("div");
+    editBtn.className = "edit-btn";
+    editBtn.textContent = "\u270F\uFE0F";
 
     const deleteBtn = document.createElement("div");
     deleteBtn.className = "delete-btn";
@@ -36,8 +45,9 @@ function addTask() {
     const textCheckboxWrapper = document.createElement("div");
     textCheckboxWrapper.className = "text-checkbox-wrapper";
 
+    taskText.appendChild(taskContent);
     textCheckboxWrapper.append(checkbox, taskText);
-    task.append(textCheckboxWrapper, deleteBtn);
+    task.append(textCheckboxWrapper, editBtn, deleteBtn);
     taskContainer.appendChild(task);
 
     taskInput.value = "";
@@ -45,6 +55,24 @@ function addTask() {
 
     clearContainerBtn.disabled = false;
     warning.style.display = "none";
+
+    checkbox.addEventListener("click", function (evt) {
+      if (evt.target.type !== "checkbox") {
+        return;
+      }
+      taskContent.classList.toggle("strike-out");
+    });
+
+    editBtn.addEventListener("click", () => {
+      if (editBtn.textContent == "\u270F\uFE0F" && !checkbox.checked) {
+        taskContent.removeAttribute("readonly");
+        taskContent.focus();
+        editBtn.textContent = "\uD83D\uDCBE";
+      } else {
+        taskContent.setAttribute("readonly", "readonly");
+        editBtn.textContent = "\u270F\uFE0F";
+      }
+    });
 
     deleteBtn.addEventListener("click", () => {
       taskContainer.removeChild(task);
